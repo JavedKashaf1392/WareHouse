@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+</head>
+<body>
+	<div th:insert="fragments/lib :: headmenu"></div>
+	<div th:insert="fragments/commonui :: menu"></div>
+	<div class="container">
+		<div class="card">
+			<div class="card-header  text-white font-weight-bold bg-secondary">
+				<h2>User Data View</h2>
+			</div>
+			<!-- header end -->
+			<div class="card-body">
+				<table class="table table-hover table-bordered table-md">
+					<tbody>
+						<tr>
+							<th>ID</th>
+							<td th:text="${ob.id}"></td>
+						</tr>
+						<tr>
+							<th>USER NAME</th>
+							<td th:text="${ob.name}"></td>
+						</tr>
+						<tr>
+							<th>EMAIL ID</th>
+							<td th:text="${ob.email}"></td>
+						</tr>
+						<tr>
+							<th>USER ROLES</th>
+							<td th:text="${ob.roles}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- body end -->
+
+		</div>
+	</div>
+</body>
+</html>

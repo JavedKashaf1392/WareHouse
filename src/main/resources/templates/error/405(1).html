@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:insert="fragments/lib :: headmenu"></div>
+	<div th:insert="fragments/commonui :: menu"></div>
+	<div class="container">
+		<div class="text-danger text-center font-weight-bold">
+			<h2>
+				<i class="fas fa-exclamation-triangle"></i>
+			</h2>
+
+			<h3>
+				These Resource You Request is Not Allowed. Please Contact Admin .
+				Error Code :<b>WH-405</b>
+			</h3>
+
+		</div>
+	</div>
+</body>
+</html>

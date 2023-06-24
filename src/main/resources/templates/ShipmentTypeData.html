@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<title>Shipment Type Data Details</title>
+</head>
+<body>
+	<div th:insert="fragments/lib :: headmenu"></div>
+	<div th:insert="fragments/commonui :: menu"></div>
+	<div class="container">
+		<div class="card">
+			<div class="card-body">
+				<div class="form-group">
+					<div class="row text-center">
+						<div class="col-10">
+
+							<form th:action="@{/shipmenttype/all}" method="GET"
+								th:object="${shipmentType}">
+								<div class="row">
+										<div class="col-2">
+											<label for="shipmentCode">Shipment Code</label>
+										</div>
+										<div class="col-3">
+											<input type="text" th:field="*{shipmentCode}"
+												class="form-control" placeholder="shipment code" />
+										</div>
+										
+										<div class="col-2">
+											<label for="shipmentMode">Shipment Mode </label>
+										</div>
+										<div class="col-4">
+											<select th:field="*{shipmentMode}" class="form-control">
+												<option value="">-SELECT-</option>
+												<option value="Air">Air</option>
+												<option value="Truck">Truck</option>
+												<option value="Train">Train</option>
+											</select>
+										</div>										
+									<div class="col-1">
+										<input type="submit" value="Search" class="btn btn-secondary" />
+
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-2">
+							<a th:href="@{/shipmenttype/excel}"
+								class="btn btn-warning btn-md "><i class="fas fa-file-excel"></i></a>
+							&nbsp; <a th:href="@{/shipmenttype/pdf}"
+								class="btn btn-secondary btn-md "><i class="fas fa-file-pdf"></i></a>
+
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<table class="table table-hover text-center">
+						<thead class="bg-dark text-white font-weight-light">
+							<tr>
+								<th>ID</th>
+								<th>MODE</th>
+								<th>CODE</th>
+								<th>ENABLE</th>
+								<th></th>
+								<th colspan="4">OPERATIONS</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="ob:${list}">
+								<td th:text="${ob.id}"></td>
+								<td th:text="${ob.shipmentMode}"></td>
+								<td th:text="${ob.shipmentCode}"></td>
+								<td th:text="${ob.enableShipment}"></td>
+								<td><a th:href="@{/shipmenttype/edit/{id}(id=${ob.id})}"
+									class="btn btn-success btn-sm"><i class="far fa-edit"></i></a></td>
+								<td><a th:href="@{/shipmenttype/view/{id}(id=${ob.id})}"
+									class="btn btn-info btn-sm"><i class="far fa-eye"></i></a></td>
+								<td><a th:href="@{/shipmenttype/delete/{id}(id=${ob.id})}"
+									class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a></td>
+								<td><a th:href="@{/shipmenttype/excel/{id}(id=${ob.id})}"
+									class="btn btn-warning btn-sm"><i class="fas fa-file-excel"></i></a></td>
+								<td><a th:href="@{/shipmenttype/pdf/{id}(id=${ob.id})}"
+									class="btn btn-warning btn-sm"><i class="fas fa-file-pdf"></i></a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+			<!-- body end -->
+			<div th:if="${message!=null}">
+				<div class="card-footer bg-info text-white text-center">
+					<b><span th:text="${message}"></span></b>
+				</div>
+				<!-- footer end -->
+			</div>
+			<!-- condition end -->
+		</div>
+		<!-- card end -->
+	</div>
+	<!-- container end -->
+</body>
+</html>

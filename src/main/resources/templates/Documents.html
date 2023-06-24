@@ -1,0 +1,74 @@
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
+</script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/all.min.js"></script>
+<script type="text/javascript" th:src="@{/js/document.js}"></script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container">
+		<div class="card">
+			<div class="card-header  text-white font-weight-bold bg-secondary">
+				<h3>WELCOME TO DOCUMENTS PAGE</h3>
+			</div>
+			<div class="card-body">
+				<form id="documentForm" th:action="@{/documents/save}" method="post"
+					enctype="multipart/form-data">
+
+					<!-- Row#1 -->
+					<div class="row">
+						<div class="col-4">
+							<label for="fileId">FILE ID</label>
+						</div>
+						<div class="col-4">
+							<input type="text" id="fileId" name="fileId" class="form-control" />
+						</div>
+						<div class="col-4">
+							<span id="fileIdError"></span>
+						</div>
+					</div>
+
+					<!-- Row#1 -->
+					<div class="row">
+						<div class="col-4">
+							<label for="fileOb">SELECT FILE</label>
+						</div>
+						<div class="col-4">
+							<input type="file" id="fileOb" name="fileOb"
+								class="form-control bg-info text-white"
+								accept=".jpg,.jpeg,.doc,.docx,.zip" />
+						</div>
+						<div class="col-4">
+							<span id="fileObError"></span>
+						</div>
+					</div>
+
+					<input type="submit" value="Upload" class="btn btn-success" />
+				</form>
+			</div>
+			<div class="card-body">
+				<table class="table text-center">
+					<tr>
+						<th>FILE ID</th>
+						<th>FILE NAME</th>
+						<th>DOWNLOAD</th>
+					</tr>
+					<tr th:each="ob:${list}">
+						<td th:text="${ob[0]}" /></td>
+						<td th:text="${ob[1]}" /></td>
+						<td><a th:href="@{/documents/download/{id}(id=${ob[0]})}" class="btn btn-secondary"><i class="fas fa-file-download"></i></a></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>	
+</body>
+</html>

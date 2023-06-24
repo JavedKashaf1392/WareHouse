@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<title>Shipment Edit Form</title>
+</head>
+<body>
+	<div th:insert="fragments/lib :: headmenu"></div>
+	<div th:insert="fragments/commonui :: menu"></div>
+	<div class="container">
+		<div class="card">
+			<div class="card-header  text-white font-weight-bold bg-secondary">
+				<h2>Shipment Edit Form</h2>
+			</div>
+			<!-- header end -->
+			<div class="card-body">
+				<form th:action="@{/shipmenttype/update}" method="POST"
+					th:object="${shipmentType}" id="shipmentTypeForm">
+					<input type="hidden" readonly="readonly" th:field="*{id}">
+					<!-- row#1 -->
+					<div class="row mb-2">
+						<div class="col-4">
+							<label for="shipmentMode">Shipment Mode <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<select th:field="*{shipmentMode}" class="form-control">
+								<option value="">-SELECT-</option>
+								<option value="Air">Air</option>
+								<option value="Truck">Truck</option>
+								<option value="Train">Train</option>
+							</select>
+						</div>
+						<div class="col-4">
+							<span id="shipmentModeError"></span>
+						</div>
+
+					</div>
+					<!-- row#2 -->
+					<div class="row mb-2">
+						<div class="col-4">
+							<label for="shipmentCode">Shipment Code <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{shipmentCode}"
+								class="form-control" placeholder="Shipment Code" />
+						</div>
+						<div class="col-4">
+							<span id="shipmentCodeError"></span>
+						</div>
+					</div>
+					<!-- row#3 -->
+					<div class="row mb-2">
+						<div class="col-4">
+							<label for="enableShipment">Enable Shipment <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<select th:field="*{enableShipment}" class="form-control">
+								<option value="">-SELECT-</option>
+								<option value="Yes">Yes</option>
+								<option value="No">No</option>
+							</select>
+						</div>
+						<div class="col-4">
+							<span id="enableShipmentError"></span>
+						</div>
+					</div>
+					<!-- row#4 -->
+					<div class="row mb-2">
+						<div class="col-4">
+							<label for="shipmentGrade">Shipment Grades <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<input type="radio" th:field="*{shipmentGrade}" value="A" /> A <input
+								type="radio" th:field="*{shipmentGrade}" value="B" /> B <input
+								type="radio" th:field="*{shipmentGrade}" value="C" /> C
+						</div>
+						<div class="col-4">
+							<span id="shipmentGradeError"></span>
+						</div>
+					</div>
+					<!-- row#5 -->
+					<div class="row mb-2">
+						<div class="col-4">
+							<label for="description">Description :</label>
+						</div>
+						<div class="col-4">
+							<textarea th:field="*{description}" class="form-control" placeholder="Shipment Description"></textarea>
+						</div>
+						<div class="col-4">
+							<span id="descriptionError"></span>
+						</div>
+					</div>
+					<!-- row#6 -->
+					<div class="row">
+						<button class="btn btn-success">Update Shipment</button>
+					</div>
+
+				</form>
+				<!-- form end -->
+
+			</div>
+			<!-- body end -->
+			<div th:if="${message!=null}">
+				<div class="card-footer bg-info text-white text-center">
+					<b><span th:text="${message}"></span></b>
+				</div>
+				<!-- condition end -->
+			</div>
+			<!-- footer end -->
+		</div>
+		<!-- card end -->
+
+	</div>
+	<!-- container end -->
+
+</body>
+</html>

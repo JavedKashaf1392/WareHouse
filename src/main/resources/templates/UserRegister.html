@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<title>User Registration Form</title>
+</head>
+<body>
+
+	<div th:insert="fragments/lib :: headmenu"></div>
+	<div th:insert="fragments/commonui :: menu"></div>
+	<div class="container">
+		<div class="card">
+			<div class="card-header  text-white font-weight-bold bg-secondary">
+				<h2>User Registration Form</h2>
+			</div>
+			<!-- header end -->
+			<div class="card-body">
+				<form th:action="@{/user/save}" method="POST"
+					th:object="${user}" id="userForm">					
+					<!-- row#1 -->
+					<div class="row mb-2">
+						<div class="col-2">
+							<label for="name">USER NAME <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{name}" class="form-control" />
+						</div>
+						<div class="col-6">
+							<span id="nameError"></span>
+						</div>
+					</div>
+					<!-- row#2 -->
+					<div class="row mb-2">
+						<div class="col-2">
+							<label for="email">EMAIL ID <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{email}" class="form-control" />
+						</div>
+						<div class="col-6">
+							<span id="emailError"></span>
+						</div>
+					</div>
+					<!-- row#3 -->	
+					<div class="row mb-2">
+						<div class="col-2">
+							<label for="password">PASSWORD <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<input type="password" class="form-control" th:field="*{password}">
+						</div>
+						<div class="col-6">
+							<span id="passwordError"></span>
+						</div>
+					</div>
+					<!-- row#4 -->
+					<div class="row mb-2">
+						<div class="col-2">
+							<label for="cpassword">CONFORM PASSWORD <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<input type="password" class="form-control" id="cpassword" name="cpassword">
+						</div>
+						<div class="col-6">
+							<span id="cpasswordError"></span>
+						</div>
+					</div>
+					<!-- row#5 -->
+					<div class="row">
+						<div class="col-2">
+							<label for="name">ROLES <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<input type="checkbox" th:field="*{roles}" value="ADMIN" />
+							ADMIN <input type="checkbox" th:field="*{roles}"
+								value="EMPLOYEE" /> EMPLOYEE
+
+						</div>
+						<div class="col-6">
+							<span id="rolesError"></span>
+						</div>
+					</div>
+					<!-- row#3 -->
+					<div class="row">
+						<div class="col-12">
+							<button class="btn btn-success">Create user</button>
+						</div>
+					</div>				
+
+				</form>
+				<!-- form end -->
+
+			</div>
+			<!-- body end -->
+			<div th:if="${message!=null}">
+				<div class="card-footer bg-info text-white text-center">
+					<b><span th:text="${message}"></span></b>
+				</div>
+				<!-- condition end -->
+			</div>
+			<!-- footer end -->
+		</div>
+		<!-- card end -->
+
+	</div>
+	<!-- container end -->
+ 
+</body>
+</html>

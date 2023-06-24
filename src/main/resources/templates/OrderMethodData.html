@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<title>Order Method Data Details</title>
+</head>
+<body>
+	<div th:insert="fragments/lib :: headmenu"></div>
+	<div th:insert="fragments/commonui :: menu"></div>
+	<div class="container">
+		<div class="card">
+			<div class="card-body">
+				<div class="form-group">
+					<div class="row text-center">
+						<div class="col-10">
+
+							<form th:action="@{/ordermethod/all}" method="GET"
+								th:object="${orderMethod}">
+								<div class="row">
+									<div class="col-2">
+										<label for="orderCode">Order Code</label>
+									</div>
+									<div class="col-4">
+										<input type="text" th:field="*{orderCode}"
+											class="form-control"  placeholder="order code"/>
+									</div>
+									<div class="col-2">
+										<label for="orderType">Order Type</label>
+									</div>
+									<div class="col-3">
+										<select th:field="*{orderType}" class="form-control">
+											<option value="">-SELECT-</option>
+											<option value="FIFO">FIFO</option>
+											<option value="LIFO">LIFO</option>
+											<option value="FCFO">FCFO</option>
+											<option value="FEFO">FEFO</option>
+										</select>
+									</div>
+									<div class="col-1">
+										<input type="submit" value="Search" class="btn btn-secondary" />
+
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-2">
+							<a th:href="@{/ordermethod/excel}"
+								class="btn btn-warning btn-md "><i class="fas fa-file-excel"></i></a>
+							&nbsp; <a th:href="@{/ordermethod/pdf}"
+								class="btn btn-secondary btn-md "><i class="fas fa-file-pdf"></i></a>
+
+						</div>
+					</div>
+				</div>
+				<table class="table table-hover text-center">
+					<thead class="bg-dark text-white font-weight-light">
+						<tr>
+							<th>ID</th>
+							<th>MODE</th>
+							<th>CODE</th>
+							<th>TYPE</th>
+							<th colspan="5">OPERATIONS</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="ob:${list}">
+							<td th:text="${ob.id}"></td>
+							<td th:text="${ob.orderMode}"></td>
+							<td th:text="${ob.orderCode}"></td>
+							<td th:text="${ob.orderType}"></td>
+							<td><a th:href="@{/ordermethod/edit/{id}(id=${ob.id})}"
+								class="btn btn-success"><i class="far fa-edit"></i></a></td>
+							<td><a th:href="@{/ordermethod/view/{id}(id=${ob.id})}"
+								class="btn btn-info"><i class="far fa-eye"></i></a></td>
+							<td><a th:href="@{/ordermethod/delete/{id}(id=${ob.id})}"
+								class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></td>
+							<td><a th:href="@{/ordermethod/excel/{id}(id=${ob.id})}"
+								class="btn btn-warning"><i class="fas fa-file-excel"></i></a></td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+			<!-- body end -->
+			<div th:if="${message!=null}">
+				<div class="card-footer bg-info text-white text-center">
+					<b><span th:text="${message}"></span></b>
+				</div>
+				<!-- footer end -->
+			</div>
+			<!-- condition end -->
+		</div>
+		<!-- card end -->
+	</div>
+	<!-- container end -->
+</body>
+</html>

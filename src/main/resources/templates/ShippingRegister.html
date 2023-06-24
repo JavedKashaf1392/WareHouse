@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:insert="fragments/lib :: headmenu"></div>
+	<div th:insert="fragments/commonui :: menu"></div>
+	<div class="container">
+		<div class="card">
+			<div class="card-header text-white font-weight-bold bg-secondary">
+				<h2>Shipping Registration Page!</h2>
+			</div>
+			<!-- header end -->
+
+			<div class="card-body">
+				<form th:action="@{/shipping/save}" method="POST" th:object="${shipping}">
+					<input type="hidden" readonly="readonly" th:field="*{id}" />
+
+					<!-- row#1 -->
+					<div class="row mb-2">
+						<div class="col-4">
+							<label for="shippingCode">Shipping Code <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{shippingCode}" class="form-control" placeholder="Shipping Code">
+						</div>
+						<div class="col-4">
+							<span id="shippingCodeError"></span>
+						</div>
+					</div>
+					<!-- row#2 -->
+					<div class="row mb-2">
+						<div class="col-4">
+							<label for="shippingRefNum">Shipping RefNum <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{shippingRefNum}" class="form-control" placeholder="Shipping Reference Number">
+						</div>
+						<div class="col-4">
+							<span id="shippingRefNumError"></span>
+						</div>
+					</div>
+					<!-- row#3 -->
+					<div class="row mb-2">
+						<div class="col-4">
+							<label for="courierRefNum">Courier Ref Num <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{courierRefNum}" class="form-control" placeholder="Courier Reference Number">
+						</div>
+						<div class="col-4">
+							<span id="courierRefNumError"></span>
+						</div>
+					</div>
+
+					<!-- row#2 -->
+					<div class="row mb-2">
+						<div class="col-4">
+							<label for="contact">Contact <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{contact}" class="form-control" placeholder="Shipping Contact">
+						</div>
+						<div class="col-4">
+							<span id="contactError"></span>
+						</div>
+					</div>
+
+
+					<!-- row#3 -->
+					<div class="row mb-2">
+						<div class="col-4">
+							<label>ORDER CODE <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<select th:field="*{so.id}" class="form-control">
+								<option value="">-SELECT-</option>
+								<option th:each="ob:${sos}" th:value="${ob.key}"
+									th:text="${ob.value}"></option>
+							</select>
+						</div>
+						<div class="col-4">
+							<span id="orderCodeError"></span>
+						</div>
+					</div>
+
+					<!-- row#3 -->
+					<div class="row mb-2">
+						<div class="col-4">
+							<label for="description">Description <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<textarea th:field="*{description}" class="form-control" placeholder="Shipping Description"></textarea>
+						</div>
+						<div class="col-4">
+							<span id="descriptionError"></span>
+						</div>
+					</div>
+
+
+					<!-- row#4 -->
+					<div class="row">
+						<input type="submit" value="Create Shipping" class="btn btn-success">
+					</div>
+
+				</form>
+			</div>
+			<!-- body end -->
+
+			<div th:if="${message!=null}">
+				<div class="card-footer text-center bg-info text-white">
+					<b><span th:text="${message}"></span></b>
+				</div>
+				<!-- footer end -->
+			</div>
+		</div>
+		<!-- card end -->
+	</div>
+
+</body>
+</html>

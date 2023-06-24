@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<title>Ware House App</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+<link rel="stylesheet" th:href="@{/css/styles.css}" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/all.min.js"></script>
+</head>
+<body class="bodyclass">
+	<div th:insert="fragments/lib :: headmenu"></div>
+	<div th:insert="fragments/commonui :: menu"></div>
+	<div class="container">
+
+		<div class="text-center">
+			<h1 class="text-danger ">WARE HOUSE APP</h1>
+				<hr/>
+		</div>
+			<div >
+			
+				<p class="lead font-weight-bold text-center">Warehousing is the storing of physical goods before they are sold. 
+				Warehouses safely and securely store products in an organized way to track where items are located, 
+				when they arrived,
+				 how long they have been there, and the quantity on hand.</p>
+				
+			</div>
+	<hr/>
+<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="4"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="5"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img th:src="@{/images/wh1.jpg}" class="d-block w-100" alt="..." th:height="*{450}" th:width="*{450}">
+      
+    </div>
+    <div class="carousel-item">
+      <img th:src="@{/images/wh2.jpg}" class="d-block w-100" alt="..." th:height="*{450}" th:width="*{450}">
+      
+    </div>
+    <div class="carousel-item">
+      <img th:src="@{/images/wh3.jpg}" class="d-block w-100" alt="..." th:height="*{450}" th:width="*{450}">
+      
+      
+    </div>
+      <div class="carousel-item">
+      <img th:src="@{/images/1.jpg}" class="d-block w-100" alt="..." th:height="*{450}" th:width="*{450}">
+    </div>
+    
+    </div>
+      <div class="carousel-item">
+      <img th:src="@{/images/2.jpg}" class="d-block w-100" alt="..." th:height="*{450}" th:width="*{450}">
+    </div>
+    
+    
+     <div class="carousel-item">
+      <img th:src="@{/images/3.jpg}" class="d-block w-100" alt="..." th:height="*{450}" th:width="*{450}">
+    </div>
+    
+    
+     <div class="carousel-item">
+      <img th:src="@{/images/4.jpg}" class="d-block w-100" alt="..." th:height="*{450}" th:width="*{450}">
+    </div>
+    
+    
+     <div class="carousel-item">
+      <img th:src="@{/images/5.jpg}" class="d-block w-100" alt="..." th:height="*{450}" th:width="*{450}">
+    </div>
+    
+    
+     <div class="carousel-item">
+      <img th:src="@{/images/1.jpg}" class="d-block w-100" alt="..." th:height="*{450}" th:width="*{450}">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+	</div>
+</body>
+</html>

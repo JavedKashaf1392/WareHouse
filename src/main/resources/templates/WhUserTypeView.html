@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+</head>
+<body>
+	<div th:insert="fragments/lib :: headmenu"></div>
+	<div th:insert="fragments/commonui :: menu"></div>
+<div class="container">
+	<div class="card">
+		<div class="card-header  text-white font-weight-bold bg-secondary">
+			<h2>WhUserType Data View</h2>
+		</div>	<!-- header end -->
+		<div class="card-body">
+		<table class="table table-hover table-bordered table-md">
+		<tbody>
+			<tr>
+				<th>Order ID</th>
+				<td th:text="${ob.id}"></td>
+			</tr>
+			<tr>
+				<th>USER TYPE</th>
+				<td th:text="${ob.userType}"></td>
+			</tr>
+			<tr>
+				<th>USER CODE</th>
+				<td th:text="${ob.userCode}"></td>
+			</tr>
+			<tr>
+				<th>USER FOR</th>
+				<td th:text="${ob.userFor}"></td>
+			</tr>
+			<tr>
+				<th>USER EMAIL</th>
+				<td th:text="${ob.userEmail}"></td>
+			</tr>
+			<tr>
+				<th>USER CONTACT</th>
+				<td th:text="${ob.userContact}"></td>
+			</tr>
+			<tr>
+				<th>USER ID TYPE</th>
+				<td th:text="${ob.userIdType}"></td>
+			</tr>
+		</tbody>
+		</table>
+		</div><!-- body end -->
+		
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<title>Part Registration Form</title>
+</head>
+<body>
+
+	<div th:insert="fragments/lib :: headmenu"></div>
+	<div th:insert="fragments/commonui :: menu"></div>
+	<div class="container">
+		<div class="card">
+			<div class="card-header  text-white font-weight-bold bg-secondary">
+				<h2>Part Registration Page!</h2>
+			</div>
+			<!-- header end -->
+
+			<div class="card-body">
+				<form th:action="@{/part/save}" method="POST" th:object="${part}" id="partForm">
+					<!-- row#1 -->
+					<div class="row mb-2">
+						<div class="col-2">
+							<label for="partCode">Part Code <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{partCode}" class="form-control" placeholder="Part Code"/>
+						</div>
+						<div class="col-6">
+							<span id="partCodeError"></span>
+						</div>
+					</div>
+					
+					<!-- row#2 -->
+					<div class="row mb-2">
+						<div class="col-2">
+							<label for="partWidth">Part Width <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<input type="text" class="form-control" th:field="*{partWidth}" placeholder="Part Width"/>
+						</div>
+						<div class="col-6">
+							<span id="partWidthError"></span>
+						</div>
+					</div>
+					<!-- row#3 -->
+					<div class="row mb-2">
+						<div class="col-2">
+							<label for="partLen">Part Length <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<input type="text" class="form-control" th:field="*{partLen}" placeholder="Part Length"/>
+						</div>
+						<div class="col-6">
+							<span id="partLenError"></span>
+						</div>
+					</div>
+					<!-- row#4 -->
+					<div class="row mb-2">
+						<div class="col-2">
+							<label for="partHgh">Part Height <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<input type="text" class="form-control" th:field="*{partHgh}" placeholder="Part Height"/>
+						</div>
+						<div class="col-6">
+							<span id="partHghError"></span>
+						</div>
+					</div>
+					<!-- row#5 -->
+					<div class="row mb-2">
+						<div class="col-2">
+							<label for="baseCost">Base Cost <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<input type="text" class="form-control" th:field="*{baseCost}" placeholder="Base Cost"/>
+						</div>
+						<div class="col-6">
+							<span id="baseCostError"></span>
+						</div>
+					</div>
+					<!-- row#6 -->
+					<div class="row mb-2">
+						<div class="col-2">
+							<label for="baseCurr">Base Currency <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<select th:field="*{baseCurr}" class="form-control">
+								<option value="">-SELECT-</option>
+								<option value="INR">INR</option>
+								<option value="USD">USD</option>
+								<option value="AUS">AUS</option>
+								<option value="ERU">ERU</option>
+							</select>
+						</div>
+						<div class="col-6">
+							<span id="baseCurrError"></span>
+						</div>
+					</div>
+					<!-- row#7 -->
+					<div class="row mb-2">
+						<div class="col-2">
+							<label >Uom Model <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<select th:field="*{uom.id}" class="form-control" id="uom">
+								<option value="">-SELECT-</option>
+								<option th:each="u:${uoms}" th:value="${u.key}" th:text="${u.value}"></option>
+							</select>
+						</div>
+						<div class="col-6">
+							<span id="uomError"></span>
+						</div>
+					</div>
+					<!-- row#8 -->
+					<div class="row mb-2">
+						<div class="col-2">
+							<label for="description">Description :</label>
+						</div>
+						<div class="col-4">
+							<textarea th:field="*{description}" class="form-control" placeholder="Part Description"></textarea>
+						</div>
+						<div class="col-6">
+							<span id="descriptionError"></span>
+						</div>
+					</div>
+									
+						<input type="submit" value="Create Part" class="btn btn-success">
+			
+
+				</form>
+			</div>
+			<!-- body end -->
+
+			<div th:if="${message!=null}">
+				<div class="card-footer text-center bg-info text-white">
+					<b><span th:text="${message}"></span></b>
+				</div>
+				<!-- footer end -->
+			</div>
+		</div>
+		<!-- card end -->
+	</div>
+
+</body>
+</html>

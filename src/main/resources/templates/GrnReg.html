@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:insert="fragments/lib :: headmenu"></div>
+	<div th:insert="fragments/commonui :: menu"></div>
+	<div class="container">
+		<div class="card">
+			<div class="card-header text-white font-weight-bold bg-secondary">
+				<h2>Grn Registration Page!</h2>
+			</div>
+
+			<!-- header end -->
+
+			<div class="card-body">
+				<form th:action="@{/grn/save}" method="POST" th:object="${grn}">
+					<input type="hidden" readonly="readonly" th:field="*{id}" />
+
+					<!-- row#1 -->
+					<div class="row mb-2">
+						<div class="col-4">
+							<label for="grnCode">Grn Code <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{grnCode}" class="form-control" placeholder="Grn Code">
+						</div>
+						<div class="col-4">
+							<span id="grnCodeError"></span>
+						</div>
+					</div>
+
+					<!-- row#2 -->
+					<div class="row mb-2">
+						<div class="col-4">
+							<label for="grnType">Grn Type <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{grnType}" class="form-control" placeholder="Grn Type">
+						</div>
+						<div class="col-4">
+							<span id="grnTypeError"></span>
+						</div>
+					</div>
+
+
+					<!-- row#3 -->
+					<div class="row mb-2">
+						<div class="col-4">
+							<label>ORDER CODE <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<select th:field="*{po.id}" class="form-control">
+								<option value="">-SELECT-</option>
+								<option th:each="ob:${pos}" th:value="${ob.key}"
+									th:text="${ob.value}"></option>
+							</select>
+						</div>
+						<div class="col-4">
+							<span id="orderCodeError"></span>
+						</div>
+					</div>
+
+					<!-- row#3 -->
+					<div class="row mb-2">
+						<div class="col-4">
+							<label for="description">Description :</label>
+						</div>
+						<div class="col-4">
+							<textarea th:field="*{description}" class="form-control" placeholder="Grn Description"></textarea>
+						</div>
+						<div class="col-4">
+							<span id="descriptionError"></span>
+						</div>
+					</div>
+
+
+					<!-- row#4 -->
+					<div class="row">
+						<input type="submit" value="Create Grn" class="btn btn-success">
+					</div>
+
+				</form>
+			</div>
+			<!-- body end -->
+
+			<div th:if="${message!=null}">
+				<div class="card-footer text-center bg-info text-white">
+					<b><span th:text="${message}"></span></b>
+				</div>
+				<!-- footer end -->
+			</div>
+		</div>
+		<!-- card end -->
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<title>Purchase Order Data Details</title>
+</head>
+<body>
+	<div th:insert="fragments/lib :: headmenu"></div>
+	<div th:insert="fragments/commonui :: menu"></div>
+	<div class="container">
+		<div class="card">
+			<div class="card-body">
+				<div class="form-group">
+					<div class="row text-center">
+						<div class="col-6">
+
+							<form th:action="@{all}" method="GET" >
+								<div class="row">
+									<div class="col-10">
+										<input type="text" name="name" placeholder="Search..."
+											class="form-control" />
+									</div>
+
+									<div class="col-2">
+										<input type="submit" value="Search" class="btn btn-secondary" />
+
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-2">
+							<a th:href="@{/purchaseorder/excel}"
+								class="btn btn-warning btn-md "><i class="fas fa-file-excel"></i></a>
+							&nbsp; <a th:href="@{/purchaseorder/pdf}"
+								class="btn btn-secondary btn-md "><i class="fas fa-file-pdf"></i></a>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<table class="table table-hover text-center">
+						<thead class="bg-dark text-white font-weight-light">
+							<tr>
+								<th>Order Id</th>
+								<th>Order Code</th>
+								<th>Status</th>
+								<th>Ship Code</th>
+								<th>Vendor</th>
+								<th>Ref No</th>
+								<th>Qty Check</th>
+								<th colspan="7">Operation</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="ob:${page}">
+								<td th:text="${ob.id}"></td>
+								<td th:text="${ob.orderCode}"></td>
+								<td th:text="${ob.defaultStatus}" class="text-danger"></td>
+								<td th:text="${ob.shipmentType.shipmentCode}"></td>
+								<td th:text="${ob.vendor.userCode}"></td>
+								<td th:text="${ob.referenceNumber}"></td>
+								<td th:text="${ob.qualityCheck}"></td>
+								<td><a th:href="@{/purchaseorder/edit/{id}(id=${ob.id})}"
+									class="btn btn-success btn-sm"><i class="far fa-edit"></i></a></td>
+								<td><a th:href="@{/purchaseorder/view/{id}(id=${ob.id})}"
+									class="btn btn-info btn-sm"><i class="far fa-eye"></i></a></td>
+								<td><a th:href="@{/purchaseorder/delete/{id}(id=${ob.id})}"
+									class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a></td>
+								<td><a th:href="@{/purchaseorder/excel/{id}(id=${ob.id})}"
+									class="btn btn-warning btn-sm"><i class="fas fa-file-excel"></i></a></td>
+								<td><a th:href="@{/purchaseorder/pdf/{id}(id=${ob.id})}"
+									class="btn btn-secondary btn-sm"><i class="fas fa-file-pdf"></i></a></td>
+								<td><a th:href="@{/purchaseorder/dtls/{id}(id=${ob.id})}"
+									class="btn btn-primary btn-sm"><i
+										class="fas fa-plus-circle"></i></a></td>
+								<td>
+									<div th:switch="${ob.defaultStatus}">
+										<span th:case="${'ORDERED'}"> <a
+											th:href="@{/purchaseorder/invoiceOrder/{id}(id=${ob.id})}"
+											class="btn btn-info btn-sm"><i class="fas fa-receipt"></i></a>
+										</span> <span th:case="${'INVOICED'}"> <a
+											th:href="@{/purchaseorder/printInvoice/{id}(id=${ob.id})}"
+											class="btn btn-success btn-sm"><i class="fas fa-print"></i></a>
+										</span> <span th:case="${'PICKING'}" class="btn btn-success btn-sm"> <i class="fa fa-tasks" aria-hidden="true"></i>
+										</span>
+										 <span th:case="${'OPEN'}" data-toggle="tooltip"
+											data-placement="bottom" title="Add Items"
+											class="btn btn-info btn-sm"> <b>Add Item</b>
+										</span>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+
+			<!-- body end -->
+			<div th:if="${message!=null}">
+				<div class="card-footer bg-info text-white text-center">
+					<b><span th:text="${message}"></span></b>
+				</div>
+				<!-- footer end -->
+			</div>
+			<!-- condition end -->
+		</div>
+		<!-- card end -->
+		<br />
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+
+
+				<li th:if="${page.hasPrevious()}" class="page-item"><a
+					class="page-link" th:href="@{/purchaseorder/all(page=${page.number-1})}">Previous</a>
+				</li>
+
+
+				<th:block th:each="i,ac:${#numbers.sequence(0,page.totalPages-1)}">
+					<li th:class="${ac.index == page.number ? 'page-item active': 'page-item '}">
+						<a class="page-link "
+							th:href="@{/purchaseorder/all(page=${i})}">[[${i+1}]]
+						</a>
+					</li>
+				</th:block>
+
+				<li th:if="${page.hasNext()}" class="page-item"><a
+					class="page-link" th:href="@{/purchaseorder/all(page=${page.number+1})}">Next</a></li>
+			</ul>
+		</nav>
+	</div>
+	<!-- container end -->
+	<script type="text/javascript">
+		$(function() {
+			$('[data-toggle="tooltip"]').tooltip()
+		})
+	</script>
+</body>
+</html>

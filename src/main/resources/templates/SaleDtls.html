@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<title>Sale Order Form</title>
+</head>
+<body>
+	<div th:insert="fragments/lib :: headmenu"></div>
+	<div th:insert="fragments/commonui :: menu"></div>
+	<div class="container">
+		<div class="card ">
+			<div class="card-header  text-white font-weight-bold bg-secondary">
+				<h2>Sales Order Form</h2>
+			</div>
+			<!-- header end -->
+			<div class="card-body">
+				<table class="table">
+					<tr>
+						<th>ORDER CODE</th>
+						<th><input th:field="*{so.orderCode}" readonly="readonly"
+							class="form-control" /></th>
+
+						<th>defaultStatus</th>
+						<th><input th:field="*{so.status}" readonly="readonly"
+							class="form-control" /></th>
+					</tr>
+				</table>
+
+				<hr />
+
+
+				<div th:if="${so.status == 'SALE-OPEN' || so.status =='SALE-READY'}">
+					<h3>ADD PARTS TO CART</h3>
+					<!-- Add Parts Form -->
+					<form th:action="@{/saleorder/addPart}" method="POST"
+						th:object="${saleDtl}">
+						<input type="hidden" th:field="*{so.id}" />
+
+						<div class="row">
+							<div class="col-2">
+								<label>SELECT PART</label>
+							</div>
+							<div class="col-3">
+								<select th:field="*{part.id}" class="form-control">
+									<option th:each="ob:${parts}" th:value="${ob.key}"
+										th:text="${ob.value}"></option>
+								</select>
+							</div>
+
+							<div class="col-1">
+								<label>QTY</label>
+							</div>
+							<div class="col-3">
+								<input type="text" th:field="*{qty}" class="form-control"
+									required="required" />
+							</div>
+
+							<div class="col-2">
+								<input type="submit" class="btn btn-success" value="Add" />
+							</div>
+						</div>
+					</form>
+				</div>
+
+			</div> <!-- card body end -->
+
+			<div class="card-footer">
+				<table class="table">
+					<tr>
+						<th>SLNO</th>
+						<th>PART CODE</th>
+						<th>BASE COST</th>
+						<th>QTY</th>
+						<th th:if="${so.status =='SALE-READY'}">OPERATION</th>
+					</tr>
+					<tr th:each="ob,i:${dtlList}">
+						<td th:text="${i.count}"></td>
+						<td th:text="${ob.part.partCode}"></td>
+						<td th:text="${ob.part.baseCost}"></td>
+						<td th:text="${ob.qty}"></td>
+						<td th:if="${so.status =='SALE-READY'}"><a
+							th:href="@{/saleorder/removePart?dtlId={dtlId}&soId={soId}(dtlId=${ob.id},soId=${so.id})}"
+							class="btn btn-danger">REMOVE </a></td>
+					</tr>
+				</table>
+				<div th:if="${so.status =='SALE-READY'}"  align="center">
+					<a th:href="@{/saleorder/conformOrder/{id}(id=${so.id})}" class="btn btn-success">CONFORM</a>
+				</div>
+				<div th:if="${so.status =='SALE-CONFIRM'}"  align="center">
+					<b>TOTAL ITEMS PLACED IN ORDER : <span th:text="${dtlList.size()}"></span> </b>
+				</div>
+				
+			</div>
+			<!-- footer end -->
+		</div>	
+		<!-- card end -->
+	</div>
+	<!-- container end -->
+
+
+</body>
+</html>

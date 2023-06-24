@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<title>WhUserType Edit Form</title>
+</head>
+<body>
+	<div th:insert="fragments/lib :: headmenu"></div>
+	<div th:insert="fragments/commonui :: menu"></div>
+	<div class="container">
+		<div class="card">
+			<div class="card-header  text-white font-weight-bold bg-secondary">
+				<h2>WhUserType Edit Form</h2>
+			</div>
+			<!-- header end -->
+			<div class="card-body">
+				<form th:action="@{/whusertype/save}" method="POST"
+					th:object="${whUserType}" id="whUserTypeForm">					
+					<!-- row#1 -->
+					<input type="hidden" readonly="readonly" th:field="*{id}"/>
+					<div class="row mb-2">
+						<div class="col-2">
+							<label for="userType">User Type <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<input type="radio" th:field="*{userType}" value="Vendor" />
+							Vendor <input type="radio" th:field="*{userType}"
+								value="Customer" /> Customer
+
+						</div>
+						<div class="col-6">
+							<span id="userTypeError"></span>
+						</div>
+					</div>
+
+					<!-- row#2 -->
+					<div class="row mb-2">
+						<div class="col-2">
+							<label for="userCode">User Code <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{userCode}" class="form-control" />
+						</div>
+						<div class="col-6">
+							<span id="userCodeError"></span>
+						</div>
+					</div>
+					<!-- row#3 -->
+					<div class="row mb-2">
+						<div class="col-2">
+							<label for="userFor">User For <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{userFor}" class="form-control" readonly/>
+						</div>
+						<div class="col-6">
+							<span id="userForError"></span>
+						</div>
+					</div>
+					<!-- row#4 -->
+					<div class="row mb-2">
+						<div class="col-2">
+							<label for="userEmail">User Email <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{userEmail}" class="form-control" />
+						</div>
+						<div class="col-6">
+							<span id="userEmailError"></span>
+						</div>
+					</div>
+					<!-- row#5 -->
+					<div class="row mb-2">
+						<div class="col-2">
+							<label for="userContact">User Contact <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<textarea th:field="*{userContact}" class="form-control"></textarea>
+						</div>
+						<div class="col-6">
+							<span id="userContactError"></span>
+						</div>
+					</div>
+					<!-- row#6 -->
+					<div class="row mb-2">
+						<div class="col-2">
+							<label for="userIdType">User Id Type <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<select th:field="*{userIdType}" class="form-control">
+								<option value="">-SELECT-</option>
+								<option value="PAN CARD">PAN CARD</option>
+								<option value="AADHAR CARD">AADHAR CARD</option>
+								<option value="VOTER ID CARD">VOTER ID CARD</option>
+								<option value="OTHER">OTHER</option>
+							</select>
+						</div>
+						<div class="col-6">
+							<span id="userIdTypeError"></span>
+						</div>
+					</div>
+					<!-- Row#7 -->
+					<div class="row mb-2">
+						<div class="col-2">
+							<label>If Other</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{ifother}" class="form-control" readonly/>
+						</div>
+						<div class="col-6">
+							<span id="ifotherError"></span>
+						</div>
+					</div>
+					<!-- Row#8 -->
+					<div class="row mb-2">
+						<div class="col-2">
+							<label>ID Number <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{idNumber}" class="form-control"/>
+						</div>
+						<div class="col-6">
+							<span id="idNumberError"></span>
+						</div>
+					</div>
+					
+						<button class="btn btn-success">Update WhUserType</button>
+				
+
+				</form>
+				<!-- form end -->
+
+			</div>
+			<!-- body end -->
+			<div th:if="${message!=null}">
+				<div class="card-footer bg-info text-white text-center">
+					<b><span th:text="${message}"></span></b>
+				</div>
+				<!-- condition end -->
+			</div>
+			<!-- footer end -->
+		</div>
+		<!-- card end -->
+
+	</div>
+	<!-- container end -->
+ 
+</body>
+</html>

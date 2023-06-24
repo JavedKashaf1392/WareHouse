@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<title>Sale Order Form</title>
+</head>
+<body>
+
+	<div th:insert="fragments/lib :: headmenu"></div>
+	<div th:insert="fragments/commonui :: menu"></div>
+	<div class="container">
+		<div class="card">
+			<div class="card-header text-white font-weight-bold bg-secondary">
+				<h3>Sale Order Registration Form</h3>
+			</div>
+			<!-- header end -->
+			<div class="card-body">
+				<form th:action="@{/saleorder/save}" method="POST"
+					th:object="${saleOrder}" id="saleOrderForm">
+					<!-- row#1 -->
+					<div class="row mb-2">
+					<div class="col-2">
+						<label for="orderCode">Order Code <span class="text-danger">*</span> :</label>
+					</div>
+						<div class="col-4">
+							<input type="text" th:field="*{orderCode}"
+								class="form-control" placeholder="Order Code" />
+						</div>
+						<div class="col-6">
+								 <span id="orderCodeError"></span>
+						</div>	
+					</div>
+					
+						<!-- row#Integration1 -->
+					<div class="row mb-2">
+						<div class="col-2">
+							<label>Shipment Code <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<select th:field="*{shipmentCode.id}" id="shipmentCode" class="form-control">
+								<option value="">SELECT</option>
+								<option th:each="ob:${shipmentTypes}" th:value="${ob.key}" th:text="${ob.value}"></option>
+							</select>
+						</div>
+						<div class="col-6">
+							<span id="shipmentCodeError"></span>
+						</div>
+					</div>
+					
+					<!-- row#Integration2 -->
+					<div class="row mb-2">
+						<div class="col-2">
+							<label>Vendor <span class="text-danger">*</span> :</label>
+						</div>
+						<div class="col-4">
+							<select th:field="*{customer.id}" id="customer" class="form-control">
+								<option value="">SELECT</option>
+								<option th:each="ob:${whUserTypes}" th:value="${ob.key}" th:text="${ob.value}"></option>
+							</select>
+						</div>
+						<div class="col-6">
+							<span id="customerError"></span>
+						</div>
+					</div>
+					
+					
+					
+					<!-- row#2 -->
+					<div class="row mb-2">
+					<div class="col-2">
+						<label for="referenceNumber">Reference Number <span class="text-danger">*</span> :</label>
+					</div>
+						<div class="col-4">
+							<input type="text" th:field="*{referenceNumber}"
+								class="form-control" placeholder="Reference Number"/>
+						</div>
+						<div class="col-6">
+								 <span id="referenceNumberError"></span>
+						</div>	
+					</div>
+					<!-- row#3 -->
+					<div class="row mb-2">
+					<div class="col-2">
+						<label for="stockMode">Stock Mode <span class="text-danger">*</span> :</label>
+					</div>
+						<div class="col-4">
+							<input type="radio" th:field="*{stockMode}" value="Grade" /> Grade
+							<input type="radio" th:field="*{stockMode}" value="Margin" />Margin						</div>
+						<div class="col-6">
+								 <span id="stockModeError"></span>
+						</div>	
+					</div>					
+					
+					<!-- row#4 -->
+					<div class="row mb-2">
+					<div class="col-2">
+						<label for="stockSource">Stock Source <span class="text-danger">*</span> :</label>
+					</div>
+						<div class="col-4">
+							<select th:field="*{stockSource}" class="form-control">
+								<option value="">-SELECT-</option>
+								<option value="OPEN">OPEN</option>
+								<option value="AVAIL">AVAIL</option>
+								<option value="REFUND">REFUND</option>
+							</select>
+						</div>
+						<div class="col-6">
+								 <span id="stockSourceError"></span>
+						</div>	
+					</div>					
+					
+					<!-- row#4 -->
+					<div class="row mb-2">
+					<div class="col-2">
+						<label for="defaultStatus">Status <span class="text-danger">*</span> :</label>
+					</div>
+						<div class="col-4">
+							<input type="text" th:field="*{status}"
+								class="form-control"  th:value="${saleOrder.setStatus('SALE-OPEN')}" readonly="readonly" />
+						</div>
+						<div class="col-6">
+								 <span id="defaultStatusError"></span>
+						</div>	
+					</div>					
+					<!-- row#5 -->
+					<div class="row mb-2">
+					<div class="col-2">
+						<label for="description">Description :</label>
+					</div>
+						<div class="col-4">
+							<textarea th:field="*{description}" class="form-control" placeholder="Sale Description"></textarea>
+						</div>
+						<div class="col-6">
+							<span id="descriptionError"></span>
+						</div>
+					</div>
+					<!-- row#6 -->
+					<div class="row">
+						<button class="btn btn-success">Create Sale Order</button>
+					</div>
+
+				</form>
+				<!-- form end -->
+
+			</div>
+			<!-- body end -->
+			<div th:if="${message!=null}">
+				<div class="card-footer bg-info text-white text-center">
+					<b><span th:text="${message}"></span></b>
+				</div>
+				<!-- condition end -->
+			</div>
+			<!-- footer end -->
+		</div>
+		<!-- card end -->
+
+	</div>
+	<!-- container end -->
+</body>
+</html>

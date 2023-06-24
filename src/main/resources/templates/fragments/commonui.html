@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<title>Wh App</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/all.min.js"></script>
+
+</head>
+<body >
+<nav th:fragment="menu" class="navbar navbar-expand-lg  navbar-dark bg-dark font-weight-bold ">
+   <a class="navbar-brand active" th:href="@{/index}"><img th:src="@{/images/logo3.png}" height="50" width="50"></a>
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">       
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shipment Type</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" th:href="@{/shipmenttype/register}">Create Shipment</a>
+          <a class="dropdown-item" th:href="@{/shipmenttype/all}">Manage Shipment</a> 
+          <a class="dropdown-item" th:href="@{/shipmenttype/charts}">Shipment Charts</a> 
+        </div>
+      </li>      
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Wh Users</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" th:href="@{/whusertype/register}">Create WH User</a>
+          <a class="dropdown-item" th:href="@{/whusertype/all}">Manage WH Users</a> 
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Uom</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" th:href="@{/uom/register}">Create Uom</a>
+          <a class="dropdown-item" th:href="@{/uom/all}">Manage Uom</a> 
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Method</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" th:href="@{/ordermethod/register}">Create Method</a>
+          <a class="dropdown-item" th:href="@{/ordermethod/all}">Manage Methods</a> 
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Part</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item"  th:href="@{/part/register}">Create Part</a>
+          <a class="dropdown-item"  th:href="@{/part/all}">Manage Part</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown ">
+        <a class="nav-link dropdown-toggle " href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Purchase</a>
+        <div class="dropdown-menu " aria-labelledby="dropdown01">
+          <a class="dropdown-item  " th:href="@{/purchaseorder/register}" >Create Purchase</a> 
+          <a class="dropdown-item" th:href="@{/purchaseorder/all}">Manage Purchase</a>
+          <a class="dropdown-item  " th:href="@{/grn/register}" >Create GRN</a>      
+          <a class="dropdown-item" th:href="@{/grn/all}">Manage GRN</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown ">
+        <a class="nav-link dropdown-toggle " href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sale</a>
+        <div class="dropdown-menu " aria-labelledby="dropdown01">
+          <a class="dropdown-item  " th:href="@{/saleorder/register}" >Create Sale</a>       
+          <a class="dropdown-item" th:href="@{/saleorder/all}">Manage Sale</a>
+          <a class="dropdown-item  " th:href="@{/shipping/register}" >Create Shipping</a>      
+          <a class="dropdown-item" th:href="@{/shipping/all}">Manage Shipping</a>
+        </div>
+      </li>
+    </ul>
+	 <ul class="navbar-nav mr-4 pr-5 ">
+	     <li class="nav-item dropdown nav-item text-nowrap  ">
+        <a class="nav-link dropdown-toggle " href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span th:text="${session.userOb.name}"></span></a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <div th:if="${session.userOb.roles.contains('ADMIN')}">
+          <a class="dropdown-item" th:href="@{/user/register}">Register User</a>
+          <a class="dropdown-item" th:href="@{/user/all}">Manage  Users</a> 
+          </div>
+          <a class="dropdown-item" th:href="@{/signout}">LOGOUT</a>           
+        </div>
+      </li>
+  </ul>
+  </div>
+</nav>
+
+
+</body>
+</html>
