@@ -25,15 +25,17 @@ public class WarehouseAppApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		
-//		  Set<String>role= new HashSet<>(); 
+		  Set<String>role= new HashSet<>(); 
 //		  role.add("ADMIN");
 //		   role.add("EMPLOYEE");
-//		  userService.saveUser(new User(1, "super", "super@gmail.com", "super", 1,
+//		  userService.saveUser(new User(1, "admin", "admin@gmail.com", "admin", 1,
 //		  role.stream().collect(Collectors.toSet())));
 		 
-//		userService.saveUser(new User(1, "Admin",
-//		   "admin@gmail.com", "admin", 1,
+//		userService.saveUser(new User(2, "Mohammad Javed",
+//		   "javed@gmail.com", "javed", 1,
 //		   role));
 	}
+	
+	
 
 }
